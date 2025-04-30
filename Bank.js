@@ -53,7 +53,7 @@ class Account {
             this.balance -= amount;
             recipientAccount.balance += amount
             this.transactionHistory.push({ transactionType: 'Transfer', amount: amount, to: recipientAccount.name });
-            recipientAccount.transactionHistory.push({ transactionType: 'Recieved', amount: amount, from: this.name });
+            recipientAccount.transactionHistory.push({ transactionType: 'Received', amount: amount, from: this.name });
         }
         else {
             console.log("Insuffficient funds")

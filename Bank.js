@@ -26,7 +26,7 @@ class Account {
     deposit(amount) {
         this.balance += amount
         console.log("Your remaining balance is" + this.balance)
-        this.transactionHistory.push({ transactionType: 'deposit', amount: amount });
+        this.transactionHistory.push({ transactionType: 'Deposit', amount: amount });
             
     }
     

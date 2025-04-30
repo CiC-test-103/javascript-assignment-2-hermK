@@ -7,7 +7,11 @@ class Bank {
 
     // Add methods here:
     // Example: createAccount(name, initialDeposit)
-
+createAccount(name, initialDeposit) {
+    const account1= new Account(name, initialDeposit)
+    this.accounts.push(account1);
+    return account1;  
+    }
 }
 
 // Account Class: Represents a single user's account
@@ -19,20 +23,54 @@ class Account {
     }
 
     // Add methods here:
+    deposit(amount) {
+        this.balance += amount
+        console.log("Your remaining balance is" + this.balance)
+        this.transactionHistory.push({ transactionType: 'deposit', amount: amount });
+            
+    }
+    
     // Example: deposit(amount) 
     // example data to be stored in transactionHistory { transactionType: 'Deposit', amount: 500 }
-
+    withdraw(amount) {
+        if (amount <= this.balance) {
+            this.balance -= amount
+            console.log("Your remaining balance is" + this.balance)
+            this.transactionHistory.push({ transactionType: 'Withdrawal', amount: amount });
+        }
+        else {
+            console.log("Sorry insuffiienct balance")
+        }
+    
+    }
+           
     // Example: withdraw(amount)
     // example data to be stored in transactionHistory { transactionType: 'Withdrawal', amount: 200 }
 
     // Example: transfer(amount, recipientAccount)
+    transfer(amount, recipientAccount) {
+        if (amount <= this.balance) {
+            this.balance -= amount;
+            recipientAccount.balance += amount
+            this.transactionHistory.push({ transactionType: 'Transfer', amount: amount, to: recipientAccount.name });
+            recipientAccount.transactionHistory.push({ transactionType: 'Recieved', amount: amount, from: this.name });
+        }
+        else {
+            console.log("Insuffficient funds")
+
+        }
+    }
     // example data to be stored in transactionHistory:
     // for account sending { transactionType: 'Transfer', amount: 300, to: recipientName }
     // for account recieving { transactionType: 'Received', amount: 300, from: senderName }
     
     // Example: checkBalance()
+    checkBalance() {
+        console.log("Your balance is " + this.balance)
+        return this.balance
+ 
+    }
 }
-
 //<-------------------------------DO NOT WRITE BELOW THIS LINE------------------------------>
 
 // Function to test bank operations
